@@ -376,6 +376,30 @@ select cust_nbr, count(order_nbr) from  cust_order where sale_price>25 group by(
 /********* ***********************/
 SELECT cust_nbr, COUNT(order_nbr) from cust_order group by(cust_nbr) having cust_nbr>250;
 
+/********* ***********************/
+/********* JOIN*********/
+/********* ***********************/
+
+/* INNER JOIN ( Select only common value***/
+SELECT d.dept_id, d.name, l.regional_group
+	FROM department d JOIN location l
+	ON d.location_id = l.location_id;
 
 
+SELECT d.dept_id, d.name, l.regional_group
+	FROM department d JOIN location l
+	USING (location_id);
 
+/* Natural JOIN ( Select only common value but do not use condition***/
+SELECT d.dept_id, d.name, l.regional_group from department d natural join location l;
+
+/* CROSS JOIN ( multiple with another table ***/
+select e.lname, d.name from employee e cross join department d;
+
+/* LEFT OUTER JOIN Select all row from left table***/
+FROM department d LEFT OUTER JOIN location l
+
+/* RIGHT OUTER JOIN Select all row from Right table***/
+FROM department d RIGHT OUTER JOIN location l
+/* FULL OUTER JOIN Select all row from LEFT, Right table***/
+SELECT d.dept_id, d.name, l.regional_group from department d full outer join location l using(location_id);
